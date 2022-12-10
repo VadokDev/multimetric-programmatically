@@ -1,4 +1,4 @@
-from multimetric.cls.base import MetricBase
+from multimetricprog.cls.base import MetricBase
 
 
 class MetricBaseOperands(MetricBase):
@@ -56,8 +56,10 @@ class MetricBaseOperands(MetricBase):
                 self.__operands.append(str(x[1]))
 
     def get_results(self):
-        self._metrics[MetricBaseOperands.METRIC_OPERANDS_SUM] = len(self.__operands)
-        self._metrics[MetricBaseOperands.METRIC_OPERANDS_UNIQUE] = len(list(set(self.__operands)))
+        self._metrics[MetricBaseOperands.METRIC_OPERANDS_SUM] = len(
+            self.__operands)
+        self._metrics[MetricBaseOperands.METRIC_OPERANDS_UNIQUE] = len(
+            list(set(self.__operands)))
 
         self._internalstore["operands"] = self.__operands
         return self._metrics
@@ -68,5 +70,6 @@ class MetricBaseOperands(MetricBase):
             _operands += x["operands"]
         return {
             MetricBaseOperands.METRIC_OPERANDS_SUM: len(_operands),
-            MetricBaseOperands.METRIC_OPERANDS_UNIQUE: len(list(set(_operands)))
+            MetricBaseOperands.METRIC_OPERANDS_UNIQUE: len(
+                list(set(_operands)))
         }

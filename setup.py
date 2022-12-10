@@ -1,7 +1,7 @@
 import subprocess
 import setuptools
 
-_long_description = "See https://github.com/priv-kweihmann/multimetric for documentation"
+_long_description = "See https://github.com/priv-kweihmann/multimetricprog for documentation"
 _long_description_content_type = "text/plain"
 try:
     _long_description = subprocess.check_output(
@@ -15,21 +15,16 @@ with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
 setuptools.setup(
-    name="multimetric",
+    name="multimetricprog",
     version="1.3.0",
     author="Konrad Weihmann",
     author_email="kweihmann@outlook.com",
     description="Calculate code metrics in various languages",
     long_description=_long_description,
     long_description_content_type=_long_description_content_type,
-    url="https://github.com/priv-kweihmann/multimetric",
+    url="https://github.com/priv-kweihmann/multimetricprog",
     packages=setuptools.find_packages(),
     install_requires=requirements,
-        entry_points={
-        "console_scripts": [
-            "multimetric = multimetric.__main__:main",
-        ]
-    },
     classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Console",

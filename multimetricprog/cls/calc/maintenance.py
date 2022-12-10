@@ -1,4 +1,4 @@
-from multimetric.cls.base_calc import MetricBaseCalc
+from multimetricprog.cls.base_calc import MetricBaseCalc
 
 import math  # noqa: F401
 
@@ -38,7 +38,7 @@ class MetricBaseCalcMaintenanceIndex(MetricBaseCalc):
             metrics[MetricBaseCalcMaintenanceIndex.METRIC_MAINTAINABILITY_INDEX] = eval(
                 MetricBaseCalcMaintenanceIndex.MI_METHOD[self.__miMethod])
         except Exception as e:
-            metrics[MetricBaseCalcMaintenanceIndex.METRIC_MAINTAINABILITY_INDEX]=0
+            metrics[MetricBaseCalcMaintenanceIndex.METRIC_MAINTAINABILITY_INDEX] = 0
         # Sanity
         metrics[MetricBaseCalcMaintenanceIndex.METRIC_MAINTAINABILITY_INDEX] = max(
             metrics[MetricBaseCalcMaintenanceIndex.METRIC_MAINTAINABILITY_INDEX], 0)

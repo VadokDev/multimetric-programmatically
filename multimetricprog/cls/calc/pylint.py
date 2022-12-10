@@ -1,6 +1,6 @@
-from multimetric.cls.base_calc import MetricBaseCalc
-from multimetric.cls.metric.operators import MetricBaseOperator
-from multimetric.cls.metric.operands import MetricBaseOperands
+from multimetricprog.cls.base_calc import MetricBaseCalc
+from multimetricprog.cls.metric.operators import MetricBaseOperator
+from multimetricprog.cls.metric.operands import MetricBaseOperands
 
 
 class MetricBaseCalcPylint(MetricBaseCalc):

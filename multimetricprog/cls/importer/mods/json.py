@@ -1,7 +1,7 @@
 import json
 import sys
 
-from multimetric.cls.importer.base import Importer
+from multimetricprog.cls.importer.base import Importer
 
 
 class ImporterJSON(Importer):
@@ -18,6 +18,7 @@ class ImporterJSON(Importer):
                     _sev = None
                     if "severity" in v:
                         _sev = v["severity"]
-                    self._items.append(Importer.ImporterItem(_file=k, _cnt=v["content"], _sev=_sev))
+                    self._items.append(Importer.ImporterItem(
+                        _file=k, _cnt=v["content"], _sev=_sev))
         except Exception as e:
             sys.stderr.write("Read error: {}\n".format(e))

@@ -1,4 +1,4 @@
-from multimetric.cls.base import MetricBase
+from multimetricprog.cls.base import MetricBase
 
 
 class MetricBaseComments(MetricBase):
@@ -51,5 +51,6 @@ class MetricBaseComments(MetricBase):
             __comments += x["comments"]
             __overall += x["overall"]
         return {
-            MetricBaseComments.METRIC_COMMENT_RATIO: __comments * 100.0 / float(__overall or 1.0)
+            MetricBaseComments.METRIC_COMMENT_RATIO: __comments *
+            100.0 / float(__overall or 1.0)
         }

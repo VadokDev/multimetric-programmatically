@@ -1,6 +1,6 @@
 import statistics
 
-from multimetric.cls.base_stats import MetricBaseStats
+from multimetricprog.cls.base_stats import MetricBaseStats
 
 
 class MetricBaseStatsAverage(MetricBaseStats):

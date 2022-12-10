@@ -1,4 +1,4 @@
-from multimetric.cls.base import MetricBase
+from multimetricprog.cls.base import MetricBase
 
 
 class MetricBaseFanout(MetricBase):
@@ -39,12 +39,13 @@ class MetricBaseFanout(MetricBase):
     def _parsePHP(self, iterator):
         res = []
         _start_token = ["include", "require", "include_once", "require_once"]
-        _cont_token = ["Token.Literal.String.Single", "Token.Literal.String.Double"]
+        _cont_token = ["Token.Literal.String.Single",
+                       "Token.Literal.String.Double"]
         for i, val in iterator:
             if str(val[0]) in ["Token.Keyword"] and \
                val[1] in _start_token:
                 while iterator and \
-                      str(val[0]) not in _cont_token:
+                        str(val[0]) not in _cont_token:
                     i, val = next(iterator)
                 if iterator:
                     res.append(val[1].strip("'").strip('"'))

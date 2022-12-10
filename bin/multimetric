@@ -1,2 +1,2 @@
 #!/bin/sh
-python3 -m multimetric $@
+python3 -m multimetricprog $@

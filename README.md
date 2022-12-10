@@ -1,124 +1,141 @@
-# multimetric
 
-![Build status](https://github.com/priv-kweihmann/multimetric/workflows/Build/badge.svg)
-[![PyPI version](https://badge.fury.io/py/multimetric.svg)](https://badge.fury.io/py/multimetric)
-[![Python version](https://img.shields.io/pypi/pyversions/multimetric)](https://img.shields.io/pypi/pyversions/multimetric)
-[![Downloads](https://img.shields.io/pypi/dm/multimetric)](https://img.shields.io/pypi/dm/multimetric)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/priv-kweihmann/multimetric.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/priv-kweihmann/multimetric/context:python)
+# NOTE: This is an edited version of multimetric, that allows you use this module in a programmatically way, it's not intended to replace the original CLI module, and I won't update more this package. For more info, see the original package
 
-Calculate code metrics in various languages
+### Usage
 
-## Purpose
+```
+from multimetricprog import calculator
 
-This tool tries to calculate the following metrics for many, many programming languages
+calculator.calculate('''
+print("your python code")
+''')
 
-* Comment to Code percentage
-* Cyclomatic complexity according to McCabe
-* Difficulty according to Halstead
-* Effort according to Halstead
-* Fan-Out
-* Lines of code
-* Maintainability index
-* Metric according to pylint
-* Metric according to TIOBE
-* Number of delivered bugs according to Halstead
-* Time required to program according to Halstead
-* Volume according to Halstead
-
-This tool was heavily inspired by [metrics](https://github.com/markfink/metrics)
-
-## Requirements
-
-* python3
-* [chardet](https://pypi.org/project/chardet/)
-* [Pygments](http://pygments.org/)
-
-## Installation
-
-### PyPi
-
-simply run
-
-```sh
-pip3 install multimetric
 ```
 
-### From source
+returns
 
-* git clone this repository
-* cd to \<clone folder\>
-* Install the needed requirements by running ```pip3 install -r requirements.txt```
-* run `python3 setup.py build`
-
-## Usage
-
-```shell
-usage: multimetric [-h] [--warn_compiler WARN_COMPILER]
-                   [--warn_duplication WARN_DUPLICATION]
-                   [--warn_functional WARN_FUNCTIONAL]
-                   [--warn_standard WARN_STANDARD]
-                   [--warn_security WARN_SECURITY] [--coverage COVERAGE]
-                   [--bugpredict {old,new}]
-                   [--maintindex {sei,classic,microsoft}]
-                   files [files ...]
-
-Calculate code metrics in various languages
-
-positional arguments:
-  files                 Files to parse
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --warn_compiler WARN_COMPILER
-                        File(s) holding information about compiler warnings
-  --warn_duplication WARN_DUPLICATION
-                        File(s) holding information about code duplications
-  --warn_functional WARN_FUNCTIONAL
-                        File(s) holding information about static code analysis findings
-  --warn_standard WARN_STANDARD
-                        File(s) holding information about language standard violations
-  --warn_security WARN_SECURITY
-                        File(s) File(s) holding information about found security issue
-  --coverage COVERAGE   File(s) with compiler warningsFile(s) holding information about testing coverage
-  --bugpredict {old,new}
-                        Method how to calculate the bug prediction
-  --maintindex {sei,classic,microsoft}
-                        Method how to calculate the maintainability index
-
-Currently you could import files of the following types for --warn_* or --coverage
-
-Following information can be read
-
-    <file> = full path to file
-    <content> = either a string
-    <severity> = optional severity
-
-    Note: you could also add a single line, then <content>
-        has to be a number reflecting to total number of findings
-
-File formats
-
-csv: CSV file of following line format
-     <file>,<content>,<severity>
-
-json: JSON file
-     <file>: {
-         "content": <content>,
-         "severity": <severity>
-     }
+```
+{
+  "files": {
+    "fp.py": {
+      "comment_ratio": 0.0,
+      "cyclomatic_complexity": 2,
+      "fanout_external": 0,
+      "fanout_internal": 0,
+      "halstead_bugprop": 0.004643856189774725,
+      "halstead_difficulty": 1.3333333333333333,
+      "halstead_effort": 18.575424759098897,
+      "halstead_timerequired": 1.0319680421721609,
+      "halstead_volume": 13.931568569324174,
+      "lang": [
+        "Python"
+      ],
+      "loc": 1,
+      "operands_sum": 4,
+      "operands_uniq": 3,
+      "operators_sum": 2,
+      "operators_uniq": 2
+    }
+  },
+  "overall": {
+    "comment_ratio": 0.0,
+    "cyclomatic_complexity": 2,
+    "fanout_external": 0,
+    "fanout_internal": 0,
+    "halstead_bugprop": 0.004643856189774725,
+    "halstead_difficulty": 1.3333333333333333,
+    "halstead_effort": 18.575424759098897,
+    "halstead_timerequired": 1.0319680421721609,
+    "halstead_volume": 13.931568569324174,
+    "loc": 1,
+    "maintainability_index": 100,
+    "operands_sum": 4,
+    "operands_uniq": 3,
+    "operators_sum": 2,
+    "operators_uniq": 2,
+    "pylint": 100.0,
+    "tiobe": 99.32835820895522,
+    "tiobe_compiler": 100.0,
+    "tiobe_complexity": 95.5223880597015,
+    "tiobe_coverage": 100.0,
+    "tiobe_duplication": 100.0,
+    "tiobe_fanout": 100.0,
+    "tiobe_functional": 100.0,
+    "tiobe_security": 100.0,
+    "tiobe_standard": 100.0
+  },
+  "stats": {
+    "max": {
+      "comment_ratio": 0.0,
+      "cyclomatic_complexity": 2,
+      "fanout_external": 0,
+      "fanout_internal": 0,
+      "halstead_bugprop": 0.004643856189774725,
+      "halstead_difficulty": 1.3333333333333333,
+      "halstead_effort": 18.575424759098897,
+      "halstead_timerequired": 1.0319680421721609,
+      "halstead_volume": 13.931568569324174,
+      "loc": 1,
+      "operands_sum": 4,
+      "operands_uniq": 3,
+      "operators_sum": 2,
+      "operators_uniq": 2
+    },
+    "mean": {
+      "comment_ratio": 0.0,
+      "cyclomatic_complexity": 2,
+      "fanout_external": 0,
+      "fanout_internal": 0,
+      "halstead_bugprop": 0.004643856189774725,
+      "halstead_difficulty": 1.3333333333333333,
+      "halstead_effort": 18.575424759098897,
+      "halstead_timerequired": 1.0319680421721609,
+      "halstead_volume": 13.931568569324174,
+      "loc": 1,
+      "operands_sum": 4,
+      "operands_uniq": 3,
+      "operators_sum": 2,
+      "operators_uniq": 2
+    },
+    "median": {
+      "comment_ratio": 0.0,
+      "cyclomatic_complexity": 2,
+      "fanout_external": 0,
+      "fanout_internal": 0,
+      "halstead_bugprop": 0.004643856189774725,
+      "halstead_difficulty": 1.3333333333333333,
+      "halstead_effort": 18.575424759098897,
+      "halstead_timerequired": 1.0319680421721609,
+      "halstead_volume": 13.931568569324174,
+      "loc": 1,
+      "operands_sum": 4,
+      "operands_uniq": 3,
+      "operators_sum": 2,
+      "operators_uniq": 2
+    },
+    "min": {
+      "comment_ratio": 0.0,
+      "cyclomatic_complexity": 2,
+      "fanout_external": 0,
+      "fanout_internal": 0,
+      "halstead_bugprop": 0.004643856189774725,
+      "halstead_difficulty": 1.3333333333333333,
+      "halstead_effort": 18.575424759098897,
+      "halstead_timerequired": 1.0319680421721609,
+      "halstead_volume": 13.931568569324174,
+      "loc": 1,
+      "operands_sum": 4,
+      "operands_uniq": 3,
+      "operators_sum": 2,
+      "operators_uniq": 2
+    }
+  }
+}
 ```
 
-By default tool guesses the content type by the filename, if that doesn't work for you please see below
+### Notes
 
-## Output
-
-Output will be written to stdout as json.
-
-### Output structure
-
-* `files` contains a list of each file passed by CLI
-* `overall` contains the calculated values for all passed files
-* `stats` contains the statistically calculated values over all files passed [see Statistical additions](#statistics)
+By default, the filename "fp.py" is hardcoded in order to make the module work, if you're interested, you can fork this and make a better version for this module (also, a better README.md).
 
 #### Item structure
 

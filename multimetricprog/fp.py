@@ -2,9 +2,10 @@ import sys
 import chardet
 from pygments import lexers
 
-from multimetric.cls.modules import get_modules_calculated
-from multimetric.cls.modules import get_modules_metrics
-from multimetric.cls.importer.filtered import FilteredImporter
+from multimetricprog.cls.modules import get_modules_calculated
+from multimetricprog.cls.modules import get_modules_metrics
+from multimetricprog.cls.importer.filtered import FilteredImporter
+
 
 def file_process(_file, _args, _importer):
     res = {}

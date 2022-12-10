@@ -1,6 +1,6 @@
-from multimetric.cls.base_calc import MetricBaseCalc
-from multimetric.cls.metric.operands import MetricBaseOperands
-from multimetric.cls.metric.operators import MetricBaseOperator
+from multimetricprog.cls.base_calc import MetricBaseCalc
+from multimetricprog.cls.metric.operands import MetricBaseOperands
+from multimetricprog.cls.metric.operators import MetricBaseOperator
 import math
 
 
@@ -75,13 +75,19 @@ class MetricBaseCalcHalstead(MetricBaseCalc):
 
     def _getBug(self, metrics):
         self._getEffort(metrics)
-        self._bug = eval(MetricBaseCalcHalstead.BUGPRED_METHOD[self.__bugPredicMethod])
+        self._bug = eval(
+            MetricBaseCalcHalstead.BUGPRED_METHOD[self.__bugPredicMethod])
         return self._bug
 
     def get_results(self, metrics):
-        metrics[MetricBaseCalcHalstead.METRIC_HALSTEAD_VOLUME] = self._getVolume(metrics)
-        metrics[MetricBaseCalcHalstead.METRIC_HALSTEAD_DIFFICULTY] = self._getDifficulty(metrics)
-        metrics[MetricBaseCalcHalstead.METRIC_HALSTEAD_EFFORT] = self._getEffort(metrics)
-        metrics[MetricBaseCalcHalstead.METRIC_HALSTEAD_TIMEREQ] = self._getTime(metrics)
-        metrics[MetricBaseCalcHalstead.METRIC_HALSTEAD_BUGS] = self._getBug(metrics)
+        metrics[MetricBaseCalcHalstead.METRIC_HALSTEAD_VOLUME] = self._getVolume(
+            metrics)
+        metrics[MetricBaseCalcHalstead.METRIC_HALSTEAD_DIFFICULTY] = self._getDifficulty(
+            metrics)
+        metrics[MetricBaseCalcHalstead.METRIC_HALSTEAD_EFFORT] = self._getEffort(
+            metrics)
+        metrics[MetricBaseCalcHalstead.METRIC_HALSTEAD_TIMEREQ] = self._getTime(
+            metrics)
+        metrics[MetricBaseCalcHalstead.METRIC_HALSTEAD_BUGS] = self._getBug(
+            metrics)
         return super().get_results(metrics)

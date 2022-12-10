@@ -1,4 +1,4 @@
-from multimetric.cls.base import MetricBase
+from multimetricprog.cls.base import MetricBase
 
 
 class MetricBaseCyclomaticComplexity(MetricBase):

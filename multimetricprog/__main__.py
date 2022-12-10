@@ -5,17 +5,18 @@ import textwrap
 import multiprocessing as mp
 
 
-from multimetric.cls.importer.pick import importer_pick
-from multimetric.cls.modules import get_additional_parser_args
-from multimetric.cls.modules import get_modules_calculated
-from multimetric.cls.modules import get_modules_metrics
-from multimetric.cls.modules import get_modules_stats
-from multimetric.fp import file_process
+from multimetricprog.cls.importer.pick import importer_pick
+from multimetricprog.cls.modules import get_additional_parser_args
+from multimetricprog.cls.modules import get_modules_calculated
+from multimetricprog.cls.modules import get_modules_metrics
+from multimetricprog.cls.modules import get_modules_stats
+from multimetricprog.fp import file_process
+
 
 def ArgParser():
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawTextHelpFormatter,
-        prog="multimetric", description='Calculate code metrics in various languages',
+        prog="multimetricprog", description='Calculate code metrics in various languages',
         epilog=textwrap.dedent("""
         Currently you could import files of the following types for --warn_* or --coverage
 
@@ -84,6 +85,7 @@ def ArgParser():
     RUNARGS.files = [os.path.abspath(x) for x in RUNARGS.files]
     return RUNARGS
 
+
 def main():
     _args = ArgParser()
     _result = {"files": {}, "overall": {}}
@@ -113,7 +115,8 @@ def main():
         _result["files"][x[1]] = x[0]
 
     for y in _overallMetrics:
-        _result["overall"].update(y.get_results_global([x[4] for x in results]))
+        _result["overall"].update(
+            y.get_results_global([x[4] for x in results]))
     for y in _overallCalc:
         _result["overall"].update(y.get_results(_result["overall"]))
     for m in get_modules_stats(_args, **_importer):
