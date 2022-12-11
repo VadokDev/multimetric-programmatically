@@ -160,8 +160,5 @@ def calculate(code):
         _result["overall"].update(y.get_results(_result["overall"]))
     for m in get_modules_stats(_args, **_importer):
         _result = m.get_results(_result, "files", "overall")
-    if not _args.dump:
-        # Output
-        print(json.dumps(_result, indent=2, sort_keys=True))
 
     return _result
