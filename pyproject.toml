@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "multimetricprog"
-version = "0.0.3"
+version = "0.0.5"
 authors = [
   { name="Gonzalo Fernández", email="gonzalo.fdez06@gmail.com" },
   { name="Konrad Weihmann", email="kweihmann@outlook.com" },

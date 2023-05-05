@@ -67,19 +67,16 @@ def calculate(code):
         _localImporter = {k: FilteredImporter(
             v, _file) for k, v in _importer.items()}
         tokens = list(_lexer.get_tokens(_cnt))
-        if _args.dump:
-            for x in tokens:
-                print("{}: {} -> {}".format(_file, x[0], str(x[1])))
-        else:
-            _localMetrics = get_modules_metrics(_args, **_localImporter)
-            _localCalc = get_modules_calculated(_args, **_localImporter)
-            for x in _localMetrics:
-                x.parse_tokens(_lexer.name, tokens)
-                res.update(x.get_results())
-                store.update(x.get_internal_store())
-            for x in _localCalc:
-                res.update(x.get_results(res))
-                store.update(x.get_internal_store())
+
+        _localMetrics = get_modules_metrics(_args, **_localImporter)
+        _localCalc = get_modules_calculated(_args, **_localImporter)
+        for x in _localMetrics:
+            x.parse_tokens(_lexer.name, tokens)
+            res.update(x.get_results())
+            store.update(x.get_internal_store())
+        for x in _localCalc:
+            res.update(x.get_results(res))
+            store.update(x.get_internal_store())
     except Exception:
         tokens = []
 
