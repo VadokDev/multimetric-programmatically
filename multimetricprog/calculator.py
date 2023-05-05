@@ -19,94 +19,29 @@ from multimetricprog.cls.modules import get_modules_metrics
 from multimetricprog.cls.importer.filtered import FilteredImporter
 
 
-def ArgParser():
-    parser = argparse.ArgumentParser(
-        formatter_class=argparse.RawTextHelpFormatter,
-        prog="multimetricprog", description='Calculate code metrics in various languages',
-        epilog=textwrap.dedent("""
-        Currently you could import files of the following types for --warn_* or --coverage
-
-        Following information can be read
-
-            <file> = full path to file
-            <content> = either a string
-            <severity> = optional severity
-
-            Note: you could also add a single line, then <content>
-                has to be a number reflecting to total number of findings
-
-        File formats
-
-        csv: CSV file of following line format
-             <file>,<content>,<severity>
-
-        json: JSON file
-             <file>: {
-                 "content": <content>,
-                 "severity": <severity>
-             }
-        """))
-    parser.add_argument(
-        "--warn_compiler",
-        default=None,
-        help="File(s) holding information about compiler warnings")
-    parser.add_argument(
-        "--warn_duplication",
-        default=None,
-        help="File(s) holding information about code duplications")
-    parser.add_argument(
-        "--warn_functional",
-        default=None,
-        help="File(s) holding information about static code analysis findings")
-    parser.add_argument(
-        "--warn_standard",
-        default=None,
-        help="File(s) holding information about language standard violations")
-    parser.add_argument(
-        "--warn_security",
-        default=None,
-        help="File(s) File(s) holding information about found security issue")
-    parser.add_argument(
-        "--coverage",
-        default=None,
-        help="File(s) with compiler warningsFile(s) holding information about testing coverage")
-    parser.add_argument(
-        "--dump",
-        default=False,
-        action="store_true",
-        help="Just dump the token tree")
-    parser.add_argument(
-        "--jobs",
-        type=int,
-        default=1,
-        help="Run x jobs in parallel")
-    parser.add_argument(
-        "--ignore_lexer_errors",
-        default=True,
-        help="Ignore unparseable files")
-    get_additional_parser_args(parser)
-    parser.add_argument("files", nargs='?', default="fp.py",
-                        help="Files to parse")
-    RUNARGS = parser.parse_args()
-    # Turn all paths to abs-paths right here
-    RUNARGS.files = [os.path.abspath("fp.py")]
-    return RUNARGS
-
-
 def calculate(code):
-    _args = ArgParser()
     _result = {"files": {}, "overall": {}}
+
+    _args = {
+        "ignore_lexer_errors": None,
+        "warn_compiler": None,
+        "warn_duplication": None,
+        "warn_functional": None,
+        "warn_standard": None,
+        "warn_security": None,
+        "coverage": None,
+        "dump": False,
+        "jobs": 1
+    }
 
     # Get importer
     _importer = {}
-    _importer["import_compiler"] = importer_pick(_args, _args.warn_compiler)
-    _importer["import_coverage"] = importer_pick(_args, _args.coverage)
-    _importer["import_duplication"] = importer_pick(
-        _args, _args.warn_duplication)
-    _importer["import_functional"] = importer_pick(
-        _args, _args.warn_functional)
-    _importer["import_security"] = importer_pick(_args, _args.warn_standard)
-    _importer["import_standard"] = importer_pick(_args, _args.warn_security)
+    _importer["import_compiler"] = None
+    _importer["import_coverage"] = None
+    _importer["import_duplication"] = None
+    _importer["import_functional"] = None
+    _importer["import_security"] = None
+    _importer["import_standard"] = None
     # sanity check
     _importer = {k: v for k, v in _importer.items() if v}
 

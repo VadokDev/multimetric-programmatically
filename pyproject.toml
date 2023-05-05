@@ -3,8 +3,8 @@ requires = ["setuptools>=40.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "multimetricprog_VadokDev"
-version = "0.0.2"
+name = "multimetricprog"
+version = "0.0.3"
 authors = [
   { name="Gonzalo Fernández", email="gonzalo.fdez06@gmail.com" },
   { name="Konrad Weihmann", email="kweihmann@outlook.com" },
@@ -19,5 +19,5 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/priv-kweihmann/multimetricprog"
-"Bug Tracker" = "https://github.com/priv-kweihmann/multimetricprog/issues"
+"Homepage" = "https://github.com/VadokDev/multimetric-programmatically"
+"Bug Tracker" = "https://github.com/VadokDev/multimetric-programmatically/issues"
